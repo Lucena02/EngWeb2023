@@ -12,9 +12,17 @@ h1 {
 }
 
 .topnavv{
-    background-color: white;
+    background-color: lightgreen;
     width: 100%;
-    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    height: 30px;
+}
+
+.toptexto{
+    padding-top: 5px;
+    justify-content: space-between;
 }
 
 .titulo {
