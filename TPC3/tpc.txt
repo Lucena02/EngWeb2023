@@ -1,0 +1,7 @@
+TPC3 
+
+GET/ -> Resposta deve ser uma página com um conjunto de opções:
+    => Lista de pessoas (funcionalidade de clicar na pessoa e levar pra pagina da pessoa)
+    => Distribuição por sexo (só fazer um pedido com filtragem do campo url)
+    => Distribuiçao por desporto (clica no desporto e apresenta a lista (?))
+    => Top Ten de Profissoes (Ao clicar em cada profissao aparece a lista de pessoas)
