@@ -221,26 +221,16 @@ exports.genSportsPage = function(pessoas){
 }
 exports.genTopPage = function(pessoas){
 
-    let dictSports = {}
-
+    let dictProfs = {}
+    
     for (let i = 0; i < pessoas.length ; i++){
-        for (let j = 0; j < pessoas[i].desportos.length ; j++){
-            if (pessoas[i].desportos[j] in dictSports){
-                dictSports[pessoas[i].desportos[j]] += 1
-            }
-            else dictSports[pessoas[i].desportos[j]] = 1
+        if (pessoas[i].profissao in dictProfs){
+            dictProfs[pessoas[i].profissao] += 1
         }
+        else dictProfs[pessoas[i].profissao] = 1
     }
 
-    var array = Object.keys(dictSports).map(
-        (key) => { return [key, dictSports[key]] });
-    
-    array = array.sort(
-        (first, second) => { return first[1] - second[1] }
-    );
 
-    var keys = array.map(
-        (e) => { return e[0] });
 
 
     topHTML =`
@@ -257,7 +247,7 @@ exports.genTopPage = function(pessoas){
         </tr> `
 
         var i = 0
-        for(let key in keys){
+        for(let key in dictProfs){
             if (i == 10) break
             topHTML += `
                 <tr>
@@ -265,7 +255,7 @@ exports.genTopPage = function(pessoas){
                         ${key}
                     </td>
                     <td>
-                    <a href="http://localhost:7777/topsport/${dictSports[key]}">${dictSports[key]}</a>
+                    <a href="http://localhost:7777/topsport/${dictProfs[key]}">${dictProfs[key]}</a>
                     </td>
                 </tr>
             `
