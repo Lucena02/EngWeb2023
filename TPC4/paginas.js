@@ -1,6 +1,6 @@
 
 
-exports.paginaNormal = function(data){
+exports.paginaNormal = function(data, info){
     var pagHTML = `
         <!DOCTYPE html>
         <html>
@@ -14,7 +14,10 @@ exports.paginaNormal = function(data){
                     <header class ="w3-container w3-purple">
                         <h2>Task</h2>
                     </header>
-
+`
+            if (info === undefined) {
+                pagHTML += `
+            
                     <form class="w3-container" method="POST">
                         <fieldset>
                             <legend>Tarefa</legend>
@@ -35,8 +38,38 @@ exports.paginaNormal = function(data){
                         </fieldset>
                     <br/>
                     <button class="w3-btn w3-purple w3-mb-2" type="submit">Submit</button>
-                </form>
+                </form> `
+            }
 
+            else {
+                console.log("Oi")
+                pagHTML += `
+            
+                    <form class="w3-container" method="POST">
+                        <fieldset>
+                            <legend>Tarefa</legend>
+                            <label>Autor</label>
+                            <input class="w3-input w3-round" type="text" name="autor" value="${info[" autor"]}"/>
+                            <br/>
+                            <label>Tarefa</label>
+                            <input class="w3-input w3-round" type="text" name="descricao" value="${info["descricao"]}"/>
+                            <br/>
+                            <label>Data Limite</label>
+                            <input class="w3-input w3-round" type="text" name="duedate" value="${info["duedate"]}"/>
+                            <br/>
+                            <label>Estado da Tarefa:</label>
+                            <input class="w3-check" type="checkbox" name="completed" value="false"/>
+                            <label>Por Fazer</label>
+                            <input class="w3-check" type="checkbox" name="completed" value="true"/>
+                            <label>Concluida</label>
+                        </fieldset>
+                    <br/>
+                    <button class="w3-btn w3-purple w3-mb-2" type="submit">Submit</button>
+                </form> `
+            }
+
+
+            pagHTML += `
             </div>
             <div class="float-container">
                 <div class = "float-child">

@@ -38,12 +38,25 @@ var taskServer = http.createServer(function(req,res){
                         var dataa = response.data
 
                         res.writeHead(200,{"Content-Type": "text/html;charset=utf-8"})
-                        res.write(paginas.paginaNormal(dataa))
+                        res.write(paginas.paginaNormal(dataa, undefined))
                         res.end()
                     })
                     .catch(function(erro){
                         res.writeHead(200,{"Content-Type": "text/html;charset=utf-8"})
                         res.write("<p>Nao foi possivel obter o resultado desejado... Erro:" + erro)
+                        res.end()
+                    })
+                }
+                else if (/\/edit\/\d+/.test(req.url)){
+                    console.log("AHHHHHHHHHH")
+                    var id = req.url.substring(6)
+                    axios.get("http://localhost:3000/tasks").then(response => {
+                        var dataa = response.data 
+                        for(i = 0; i < dataa.length; i++){
+                            if (id == dataa[i]["id"]) var info = dataa[i]
+                        }
+                        res.writeHead(200,{"Content-Type": "text/html;charset=utf-8"})
+                        res.write(paginas.paginaNormal(dataa, info))
                         res.end()
                     })
                 }
@@ -54,7 +67,7 @@ var taskServer = http.createServer(function(req,res){
                                     var dataa = response.data
             
                                     res.writeHead(200,{"Content-Type": "text/html;charset=utf-8"})
-                                    res.write(paginas.paginaNormal(dataa))
+                                    res.write(paginas.paginaNormal(dataa, undefined))
                                     res.end()
                                 })
                     }).catch(function(erro){
@@ -75,7 +88,7 @@ var taskServer = http.createServer(function(req,res){
                                     var dataa = response.data
             
                                     res.writeHead(200,{"Content-Type": "text/html;charset=utf-8"})
-                                    res.write(paginas.paginaNormal(dataa))
+                                    res.write(paginas.paginaNormal(dataa, undefined))
                                     res.end()
                                 })
                             })
@@ -85,13 +98,37 @@ var taskServer = http.createServer(function(req,res){
                                 res.end()
                             })
                         }
-
                     })
+                }
+                else if (/\/edit\/\d+/.test(req.url)){
+                    var id = req.url.substring(6)
                     
+                    collectRequestBodyData(req,result => {
+                        if(result){
+                            console.log(id)
+                            console.log(result)
+                            axios.put("http://localhost:3000/tasks/" + id, result).then(resp => {
+                                axios.get("http://localhost:3000/tasks").then(response => {
+                                    var dataa = response.data
+            
+                                    res.writeHead(200,{"Content-Type": "text/html;charset=utf-8"})
+                                    res.write(paginas.paginaNormal(dataa, undefined))
+                                    res.end()
+                                })
+                            })
+                            .catch(function(erro){
+                                res.writeHead(500,{"Content-Type": "text/html;charset=utf-8"})
+                                res.write("<p>Nao foi possivel atualizar o resultado desejado... Erro:" + erro)
+                                res.end()
+                            })
+                        }
+                    })
                 }
                 break
-
             default:
+                res.writeHead(500,{"Content-Type": "text/html;charset=utf-8"})
+                res.write("<p>Erro:" + erro)
+                res.end()
                 break
         }
     }
