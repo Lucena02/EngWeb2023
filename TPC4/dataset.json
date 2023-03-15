@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "nome": "ricardo"
+    },
+    {
+      "id": 2,
+      "nome": "joao"
+    }
+  ],
+  "tasks": []
+}
