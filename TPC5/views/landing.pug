@@ -1,0 +1,96 @@
+doctype html
+html
+  head
+    title Task Manager
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='/stylesheets/w3.css')
+  body
+    block content
+      div.w3-card-4
+        header.w3-container.w3-purple
+          h2 Task
+
+        if typeof i === 'undefined'
+          form.w3-container(method="POST")
+            fieldset
+              legend Tarefa
+              label Autor
+                input.w3-input.w3-round(type="text" name="autor")
+              br
+              label Tarefa
+                input.w3-input.w3-round(type="text" name="descricao")
+              br
+              label Data Limite
+                input.w3-input.w3-round(type="text" name="duedate")
+              br
+              label Estado da Tarefa:
+                input.w3-check(type="checkbox" name="completed" value="false")
+                label Por Fazer
+                input.w3-check(type="checkbox" name="completed" value="true")
+                label Concluida
+              br
+              button.w3-btn.w3-purple.w3-mb-2(type="submit") Submit
+
+        else 
+          form.w3-container(method="POST")
+            fieldset
+              legend Tarefa
+              label Autor
+                input.w3-input.w3-round(type='text', name='autor', value=i['autor'])
+              br
+              label Tarefa
+                input.w3-input.w3-round(type="text" name="descricao" value=i["descricao"])
+              br
+              label Data Limite
+                input.w3-input.w3-round(type="text" name="duedate" value=i["duedate"])
+              br
+              label Estado da Tarefa:
+                input.w3-check(type="checkbox" name="completed" value="false")
+                label Por Fazer
+                input.w3-check(type="checkbox" name="completed" value="true")
+                label Concluida
+              br
+              button.w3-btn.w3-purple.w3-mb-2(type="submit") Submit
+
+        div.float-container
+          div.float-child
+            header TO DO LIST
+            table.w3-table
+              tr
+                th Id
+                th Autor
+                th Description
+                th Due Date
+                th Operations
+
+                each item in data
+                  if item.completed == 'false'
+                    tr
+                      td= item.id
+                      td= item['autor']
+                      td= item.descricao
+                      td= item.duedate
+                      td
+                        a(href=`http://localhost:7777/edit/${item.id}`) Edit/
+                        a(href=`http://localhost:7777/delete/${item.id}`) Delete
+
+          div.float-child
+            header COMPLETED TASKS 
+            table.w3-table
+              tr
+                th Id
+                th Autor
+                th Description
+                th Due Date
+                th Operations
+
+                each item in data
+                  if item.completed == 'true'
+                    tr
+                      td= item.id
+                      td= item['autor']
+                      td= item.descricao
+                      td= item.duedate
+                      td
+                        a(href=`http://localhost:7777/edit/${item.id}`) Edit/
+                        a(href=`http://localhost:7777/delete/${item.id}`) Delete

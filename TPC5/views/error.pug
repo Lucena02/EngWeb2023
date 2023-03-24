@@ -1,0 +1,8 @@
+block content
+  h1 Error
+  p An error has occurred.
+
+  if error.status
+    p Status code: #{error.status}
+  if error.message
+    p Error message: #{error.message}
