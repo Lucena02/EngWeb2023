@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    h1 Resultado Individual
+
+    .w3-container
+        table.w3-table-all
+            tr 
+                th Index
+                th DataEMD 
+                th Nome
+                th Género 
+                th Idade 
+                th Resultado 
+                th Morada
+                th Modalidade
+                th Clube 
+                th Email 
+                th Federado 
+                th Resultado
+            tr
+                td=ind.index
+                td=ind.dataEMD 
+                td=ind.nome.primeiro+" "+ind.nome.último
+                td=ind.género 
+                td=ind.idade 
+                td=ind.resultado 
+                td=ind.morada
+                td=ind.modalidade
+                td=ind.clube 
+                td=ind.email 
+                td=ind.federado 
+                td=ind.resultado

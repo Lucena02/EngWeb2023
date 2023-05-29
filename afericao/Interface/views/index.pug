@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  .w3-container
+    table.w3-table-all
+      tr 
+        th DataEMD 
+        th Nome
+        th Género 
+        th Idade 
+        th Resultado 
+      each ind in data
+        tr(onclick="location.href='http://localhost:3001/"+ind._id+"'")
+          td=ind.dataEMD 
+          td=ind.nome.primeiro+" "+ind.nome.último
+          td=ind.género 
+          td=ind.idade 
+          td=ind.resultado 

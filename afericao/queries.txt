@@ -1,0 +1,6 @@
+Quantos exames estão registados? 300.
+Quantos exames tiveram um resultado válido? 138
+Qual a distribuição dos exames por género? F:142 M: 158
+Qual a distribuição dos exames por modalidade?  (????????????????????)
+Quantos atletas federados do "GDGoma" fizeram EMD? 24
+Quantos atletas do género feminino que praticam Triatlo fizeram EMD? 9
